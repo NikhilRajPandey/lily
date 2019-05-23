@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 from gtts import gTTS
 from datetime import datetime
+import speech_recognition as sr
 import time
 import os
-import speech_recognition as sr
 import webbrowser
 import requests
 
