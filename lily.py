@@ -123,7 +123,5 @@ def set_timer(seconds):
             speak("Sir Time is over")
             break
 
-# date_time()
-# wikiHowSearch("How to make Drone")
-# weathernow()
-set_timer(3)
+wishme()
+speak("The program is in Devlopment when it will ready then it will take voice command")
