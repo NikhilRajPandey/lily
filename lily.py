@@ -120,7 +120,7 @@ def set_timer(seconds):
     print("Start")
     while time.time() != timer_time:
         if time.time() == timer_time:
-            speak("Sir Time is over")
+            os.system('mpg321 alarm.mp3')
             break
 
 wishme()
