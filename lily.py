@@ -47,8 +47,7 @@ def take_input():
         try: 
             text = r.recognize_google(audio) 
             print ("you said: " + text) 
-        
-        
+             
         except sr.UnknownValueError: 
             print("Google Speech Recognition could not understand audio") 
         

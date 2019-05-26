@@ -1,0 +1,9 @@
+{
+    "name":"Nikhil Raj",
+    "age":"12",
+    "dob":"3/11/2005",
+    "country":"India",
+    "fav":{
+        "food":"Samosa"
+    }
+}
