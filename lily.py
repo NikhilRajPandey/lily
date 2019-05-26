@@ -18,7 +18,14 @@ def speak(audio):
     os.system("mpg321 audio.mp3")
 
 def wishme():
-    speak("Hello! Good After Noon Sir.")
+    if datetime.hour() < 12:
+        speak("Hello! Good Morning Noon Sir.")
+    elif datetime.hour() > 12 and datetime.hour() < 5:
+        speak("Hello! Good After Noon Sir.")
+    elif datetime.hour() > 19:
+        speak("Hello! Good Night Sir.")
+    else:
+        speak("Hello! Good Evening Sir.")
 
 def take_input():
     mic = "default"
@@ -171,4 +178,5 @@ def do_task(task):
 
 wishme()
 speak("The program is in Devlopment when it will ready then it will take voice command")
+
 
