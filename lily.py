@@ -6,6 +6,11 @@ import time
 import os
 import webbrowser
 import requests
+from re import sub
+
+def Str2MinusStr1 (str1, str2, n=1):
+    # Copied From https://stackoverflow.com/questions/18454570/how-can-i-subtract-two-strings-in-python
+    return sub(r'%s' % (str2), '', str1, n)
 
 def speak(audio):
     tts = gTTS(text=audio, lang='en')
@@ -121,7 +126,43 @@ def set_timer(seconds):
     while time.time() != timer_time:
         if time.time() == timer_time:
             os.system('mpg321 alarm.mp3')
-            break
+
+def caluclate(equation):
+    print(eval(equation))
+
+def do_task(task):
+    if 'open google' in task:
+        open_google()
+
+    if 'open youtube' in task:
+        open_youtube()
+
+    if 'search google' in task:
+        Str2MinusStr1('task','search google')
+        search_google(task)
+
+    if 'play' in task:
+        Str2MinusStr1('task','play')
+        search_youtube(task)
+
+    if 'search wikihow' in task:
+        Str2MinusStr1(task,'search wikihow')
+        wikiHowSearch(task)
+
+    if 'weather now' in task:
+         weathernow()
+
+    if 'calculate' in task:
+        Str2MinusStr1(task,'calculate')
+        caluclate(task)
+
+    if 'set timer' in task:
+        Str2MinusStr1(task,'set timer')
+        set_timer(task)
+
+    if 'time now' in task:
+        date_time()
 
 wishme()
 speak("The program is in Devlopment when it will ready then it will take voice command")
+
