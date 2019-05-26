@@ -130,6 +130,9 @@ def set_timer(seconds):
 def caluclate(equation):
     print(eval(equation))
 
+def aboutyou():
+    speak("I am a Program which can automate your task created by Nikhil Raj Pandey.")
+
 def do_task(task):
     if 'open google' in task:
         open_google()
@@ -162,6 +165,9 @@ def do_task(task):
 
     if 'time now' in task:
         date_time()
+    
+    if 'about you' in task:
+        aboutyou()
 
 wishme()
 speak("The program is in Devlopment when it will ready then it will take voice command")
