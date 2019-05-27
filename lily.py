@@ -1,12 +1,12 @@
 from bs4 import BeautifulSoup
 from gtts import gTTS
 from datetime import datetime
+from re import sub
 import speech_recognition as sr
 import time
 import os
 import webbrowser
 import requests
-from re import sub
 
 def Str2MinusStr1 (str1, str2, n=1):
     # Copied From https://stackoverflow.com/questions/18454570/how-can-i-subtract-two-strings-in-python
@@ -18,11 +18,12 @@ def speak(audio):
     os.system("mpg321 audio.mp3")
 
 def wishme():
-    if datetime.hour() < 12:
-        speak("Hello! Good Morning Noon Sir.")
-    elif datetime.hour() > 12 and datetime.hour() < 5:
+    current_hour = int(datetime.now().hour)
+    if current_hour < 12:
+        speak("Hello! Good Morning Sir.")
+    elif current_hour > 12 and current_hour < 5:
         speak("Hello! Good After Noon Sir.")
-    elif datetime.hour() > 19:
+    elif current_hour > 19:
         speak("Hello! Good Night Sir.")
     else:
         speak("Hello! Good Evening Sir.")
@@ -39,14 +40,15 @@ def take_input():
     
     with sr.Microphone(device_index = device_id) as source: 
         
-        r.adjust_for_ambient_noise(source) 
+        # r.adjust_for_ambient_noise(source) 
         print ("Listening")
-        
+        r.pause_threshold = 1
         audio = r.listen(source) 
             
         try: 
-            text = r.recognize_google(audio) 
-            print ("you said: " + text) 
+            text = r.recognize_google(audio,language='en-in')
+            print ("you said: " + text)
+            # do_task(text)+
              
         except sr.UnknownValueError: 
             print("Google Speech Recognition could not understand audio") 
@@ -54,7 +56,6 @@ def take_input():
         except sr.RequestError : 
             print("Could not request results from Google")
 
-    return text
 
 def open_google():
     webbrowser.open("http://www.google.com")
@@ -143,39 +144,41 @@ def do_task(task):
     if 'open google' in task:
         open_google()
 
-    if 'open youtube' in task:
+    elif 'open youtube' in task:
         open_youtube()
 
-    if 'search google' in task:
+    elif 'search google' in task:
         Str2MinusStr1('task','search google')
         search_google(task)
 
-    if 'play' in task:
+    elif 'play' in task:
         Str2MinusStr1('task','play')
         search_youtube(task)
 
-    if 'search wikihow' in task:
+    elif 'search wikihow' in task:
         Str2MinusStr1(task,'search wikihow')
         wikiHowSearch(task)
 
-    if 'weather now' in task:
+    elif 'weather now' in task:
          weathernow()
 
-    if 'calculate' in task:
+    elif 'calculate' in task:
         Str2MinusStr1(task,'calculate')
         caluclate(task)
 
-    if 'set timer' in task:
+    elif 'set timer' in task:
         Str2MinusStr1(task,'set timer')
         set_timer(task)
 
-    if 'time now' in task:
+    elif 'time now' in task:
         date_time()
     
-    if 'about you' in task:
+    elif 'about you' in task:
         aboutyou()
-
 wishme()
-speak("The program is in Devlopment when it will ready then it will take voice command")
+
+while True:
+    take_input()
+
 
 
